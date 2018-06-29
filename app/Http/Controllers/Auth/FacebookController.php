@@ -8,6 +8,7 @@ use Socialite;
 use Exception;
 use Auth;
 use App\User;
+use File;
 
 class FacebookController extends Controller
 {
@@ -32,17 +33,28 @@ class FacebookController extends Controller
     {
         try {
             $user = Socialite::driver('facebook')->user();
-            $create['name'] = $user->getName();
-            $create['email'] = $user->getEmail();
-            $create['facebook_id'] = $user->getId();
-            $create['facebook_token'] = $user->token;
-            $create['avatar'] = $user->getAvatar();
 
             //Check is user created
-            $user_model = User::where("facebook_id" , $create['facebook_id'])->first();
+            $user_model = User::where("facebook_id" , $user->getId())->first();
             if(!$user_model){
+                //Create new user
+                $create['name'] = $user->getName();
+                $create['email'] = $user->getEmail();
+                $create['facebook_id'] = $user->getId();
+
+                // //Get avatar image and save into public/avatars/{md5(facebook_id)}.jpg
+                $fileContents = file_get_contents($user->getAvatar());
+                File::put(public_path() . '/avatars/' . md5($user->getId()) . ".jpg", $fileContents);
+                $create['avatar'] = md5($user->getId());
+                $create['facebook_token'] = $user->token;
                 $user_model = User::create($create);
+            }else{
+                $user_model->facebook_token = $user->token;
             }
+
+            //Update this user's Facebook token
+            $user_model->last_login = date("Y-m-d H:i:s");
+            $user_model->save();
 
             Auth::login($user_model,true);
 
