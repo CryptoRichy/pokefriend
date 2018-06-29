@@ -8,6 +8,7 @@ use Socialite;
 use Exception;
 use Auth;
 use App\User;
+use App\Friend;
 use File;
 
 class FacebookController extends Controller
@@ -58,7 +59,7 @@ class FacebookController extends Controller
 
             Auth::login($user_model,true);
 
-            return redirect('/');
+            
 
             //測試Facebook 好友list讀取
             $fb = new \Facebook\Facebook([
@@ -68,7 +69,7 @@ class FacebookController extends Controller
             ]);
 
             try {
-                $response = $fb->get('/'.$user->getId()."/friends?limit=1", $user->token);
+                $response = $fb->get('/'.$user->getId()."/friends?limit=5", $user->token);
             } catch(\Facebook\Exceptions\FacebookResponseException $e) {
                 echo 'Graph returned an error: ' . $e->getMessage();
                 exit;
@@ -83,8 +84,12 @@ class FacebookController extends Controller
             $keep = true;
             while($keep){
                 foreach ($edge as $one) {
-                    $user = $one->asArray();
-                    echo $user['id'].":".$user['name']."<br>";
+                    $fb_user = $one->asArray();
+                    //echo $user['id'].":".$user['name']."<br>";
+                    $fuser = User::where('facebook_id' , $fb_user['id'])->first();
+                    if($fuser){
+                        $friend = Friend::firstOrCreate(['user_id' => $user_model->id, 'friend_user_id' => $fuser->id]);
+                    }
                 }
     
                 $edge = $fb->next($edge);
@@ -93,6 +98,8 @@ class FacebookController extends Controller
                     $keep = false;
                 }
             }
+
+            return redirect('/');
         } catch (Exception $e) {
             
             echo $e->getMessage();

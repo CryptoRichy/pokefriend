@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Auth;
 use Validator;
+use DB;
 use App\Char;
 
 
@@ -25,6 +26,25 @@ class IndexController extends Controller
         if(count($chars) == 0){
             return redirect('char/add');
         }
+
+        $f_chars = DB::table('friends')->where('friends.user_id' , $user->id)
+                        ->join('users' , 'friends.friend_user_id' , '=' , 'users.id')
+                        ->join('chars' , 'friends.friend_user_id' , '=' , 'chars.user_id')
+                        ->select()
+                        ->get();
+
+        // $f_chars = DB::table('chars')
+        //                 ->join('users' , 'chars.user_id' ,'=' , 'users.id')
+        //                 ->join('friends' , 'chars.user_id', '=' , 'friends.user_id')
+        //                 ->select()
+        //                 ->get();
+
+        //echo count($f_chars);
+
+        print_r($f_chars);
+
+        //print_r($f_chars);
+        exit;
         return view('index');
     }
 
