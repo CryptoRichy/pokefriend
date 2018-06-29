@@ -34,3 +34,11 @@ header {
 .btn-facebook > i{
     padding-right: 10px;
 }
+
+.team-select{
+    text-align: center;
+}
+.team-select > img {
+    padding:18px;
+    width:85%;
+}

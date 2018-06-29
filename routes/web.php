@@ -18,6 +18,10 @@ Route::group(['middleware' => 'usercheck'] , function () {
         return 'You are login as: '.Auth::user()['name'];
     });
 
+    Route::post('char/add' , 'IndexController@charAddPost');
+    Route::get('char/add' , 'IndexController@charAdd');
+    
+
     Route::get('logout' , function() {
         Auth::logout();
         return redirect('/');
