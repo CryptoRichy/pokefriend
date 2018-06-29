@@ -82,12 +82,19 @@
                     Laravel
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 row-block">
+                            <p>
+                            @if(Auth::check())
+                            {{ Auth::user()['name'] }}
+                            @endif
+                            </p>
+                            <a href="{{ url('auth/facebook') }}" class="btn btn-lg btn-primary btn-block">
+                                <strong>Login With Facebook</strong>
+                            </a>     
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
