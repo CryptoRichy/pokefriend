@@ -12,10 +12,25 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::check()){
+        return view('index');
+    }else{
+        return view('guest');
+    }
 });
 
-Route::get('/facebook', function () {
+Route::group(['middleware' => 'usercheck'] , function () {
+    Route::get('test' , function() {
+        return 'You are login as: '.Auth::user()['name'];
+    });
+
+    Route::get('logout' , function() {
+        Auth::logout();
+        return redirect('/');
+    });
+});
+
+Route::get('facebook', function () {
     return view('facebook');
 });
 Route::get('/auth/facebook', 'Auth\FacebookController@redirectToFacebook');

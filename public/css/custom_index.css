@@ -1,0 +1,36 @@
+.wrapper-head{
+    margin-top: 20px;
+}
+
+.short_success_panel{
+    padding: 2rem 5rem;
+    margin-bottom: 2rem;
+    background-color: #c8e6c9;
+    border-radius: 0.3rem;
+}
+
+.jumbotron{
+    padding: 2rem 5rem;
+}
+
+.input-preview{
+    margin: 1rem 1rem;
+    border-radius: 0.2rem;
+    width:100%;
+}
+
+header {
+    padding: 156px 0 100px;
+}
+
+.feature-item{
+    text-align: center;
+}
+
+.btn-facebook{
+    background-color: #4582EC;
+    color: #ffffff;
+}
+.btn-facebook > i{
+    padding-right: 10px;
+}
