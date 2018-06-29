@@ -58,6 +58,8 @@ class FacebookController extends Controller
 
             Auth::login($user_model,true);
 
+            return redirect('/');
+
             //測試Facebook 好友list讀取
             $fb = new \Facebook\Facebook([
                 'app_id' => config('services.facebook.client_id'),

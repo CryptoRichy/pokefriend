@@ -30,28 +30,35 @@
     </style>
     @section('style')
     @show()
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="javascript:;">Poke Friend</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">首頁
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">關於PokeFriend</a>
-            </li>
-          </ul>
+        <div class="container">
+            <a class="navbar-brand" href="javascript:;">Poke Friend</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">關於PokeFriend</a>
+                    </li>
+                    @if(isset($user))
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:;">{{$user->name}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('logout')}}">登出</a>
+                    </li>
+                    @endif
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
 
     <!-- Page Content -->
@@ -61,5 +68,5 @@
 
     @section('js')
     @show()
-  </body>
+</body>
 </html>

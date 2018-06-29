@@ -11,13 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    if(Auth::check()){
-        return view('index');
-    }else{
-        return view('guest');
-    }
-});
+Route::get('/', 'IndexController@index');
 
 Route::group(['middleware' => 'usercheck'] , function () {
     Route::get('test' , function() {
