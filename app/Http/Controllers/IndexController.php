@@ -41,11 +41,11 @@ class IndexController extends Controller
 
         //echo count($f_chars);
 
-        print_r($f_chars);
+        // print_r($f_chars);
 
-        //print_r($f_chars);
-        exit;
-        return view('index');
+        // //print_r($f_chars);
+        // exit;
+        return view('index',['f_chars' => $f_chars]);
     }
 
     public function charAdd()
