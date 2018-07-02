@@ -20,6 +20,8 @@ Route::group(['middleware' => 'usercheck'] , function () {
 
     Route::post('char/add' , 'IndexController@charAddPost');
     Route::get('char/add' , 'IndexController@charAdd');
+
+    Route::get('char/list' , 'IndexController@charList');
     
 
     Route::get('logout' , function() {

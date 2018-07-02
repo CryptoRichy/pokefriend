@@ -33,24 +33,37 @@ class IndexController extends Controller
                         ->select()
                         ->get();
 
-        // $f_chars = DB::table('chars')
-        //                 ->join('users' , 'chars.user_id' ,'=' , 'users.id')
-        //                 ->join('friends' , 'chars.user_id', '=' , 'friends.user_id')
-        //                 ->select()
-        //                 ->get();
-
-        //echo count($f_chars);
-
-        // print_r($f_chars);
-
-        // //print_r($f_chars);
-        // exit;
         return view('index',['f_chars' => $f_chars]);
     }
 
     public function charAdd()
     {
+        View::share('user',Auth::user());
         return view('char.add');
+    }
+
+    public function charList()
+    {
+        $user = Auth::user();
+        View::share("user",$user);
+        $chars = Char::where('user_id' , $user->id)->get();
+
+        return view('char.list',['chars' => $chars]);
+    }
+
+    public function charEdit($id)
+    {
+        //Check $id is isset?
+        $char = Char::find($id);
+        
+        //Check Char belong user
+        $user = Auth::user();
+        View::share("user",$user);
+        if($char->user_id != $user->id){
+            return redirect('char/list');
+        }
+
+        return view('char.edit',['char' => $char]);
     }
 
     public function charAddPost(Request $req)
