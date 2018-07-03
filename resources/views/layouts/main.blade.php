@@ -50,7 +50,7 @@
                     </li>
                     @if(isset($user))
                     <li class="nav-item">
-                        <a class="nav-link" href="javascript:;">{{$user->name}}</a>
+                        <a class="nav-link" href="{{url('char/list')}}">我的角色</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('logout')}}">登出</a>
