@@ -20,7 +20,7 @@
                         </div>
                         <hr class="my-4">
                         @endif
-                        <form method="post" action="{{ action('IndexController@charEditPost' , $char->id) }}">
+                        <form method="post" action="{{ action('CharController@update' , $char->id) }}">
                             @csrf
                             <input type="hidden" name="id" value="$char->id">
                             <div class="form-group">

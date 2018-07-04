@@ -16,7 +16,7 @@
     <div class="row wrapper-head">
         <div class="col-md-4">
             <div class="feature-item">
-                <img src="http://imghere.imin.tw/240x380/">
+                <img src="http://imghere.imin.tw/340x380/">
                 <h3>Device Mockups</h3>
                 <p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
             </div>

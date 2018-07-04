@@ -14,18 +14,14 @@
 Route::get('/', 'IndexController@index');
 
 Route::group(['middleware' => 'usercheck'] , function () {
-    Route::get('test' , function() {
-        return 'You are login as: '.Auth::user()['name'];
+    Route::group(['prefix' => 'char'] , function() {
+        Route::get('list' , 'CharController@list');
+        Route::post('add', 'CharController@store');
+        Route::get('add' , 'CharController@create');
+        Route::post('edit/{id}' , 'CharController@update');
+        Route::get('edit/{id}' , 'CharController@edit');
+        Route::post('delete' , 'CharController@delete');
     });
-
-    Route::post('char/add' , 'IndexController@charAddPost');
-    Route::get('char/add' , 'IndexController@charAdd');
-
-    Route::get('char/list' , 'IndexController@charList');
-    Route::post('char/edit/{id}' , 'IndexController@charEditPost');
-    Route::get('char/edit/{id}' , 'IndexController@charEdit');
-    
-    
 
     Route::get('logout' , function() {
         Auth::logout();
@@ -33,8 +29,5 @@ Route::group(['middleware' => 'usercheck'] , function () {
     });
 });
 
-Route::get('facebook', function () {
-    return view('facebook');
-});
 Route::get('/auth/facebook', 'Auth\FacebookController@redirectToFacebook');
 Route::get('/auth/facebook/callback', 'Auth\FacebookController@handleFacebookCallback');
