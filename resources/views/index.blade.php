@@ -1,59 +1,51 @@
 @extends('layouts/main')
 
 @section('content')
-<div class="container" id="f_list">
-    <h2 class="wrapper-head">你的Facebook好友們</h2>
+<header class="bg-primary text-white">
+      <div class="container text-center">
+        <h1><img src="{{asset('img/pokefriend-logo.png')}}" style="max-width:300px;"></h1>
+        
+        <h3>幫你找出還有哪些Facebook的好友在玩Pokemon Go<br>快速查詢好友邀請代碼！</h3>
+        @if(Auth::check())
+        <p class="lead">
+            <a class="btn btn-lg btn-success" href="{{ url('friend') }}"><i class="fas fa-user-friends"></i>我的好友</a>
+        </p>
+        @else
+        <p class="lead">
+            <a class="btn btn-lg btn-facebook" href="{{ url('auth/facebook') }}"><i class="fab fa-facebook-f"></i>使用 Facebook 登入</a>
+        </p>
+        @endif
+        
+        <p class="mute"><small>PokeFriend只會取得您的臉書名稱、Email、大頭貼，以及使用此應用程式的好友名單</small></p>
+        <p class="mute"><small>並不會將這些資料做為其他用途，或代替您PO文等</small></p>
+      </div>
+</header>
+<div class="container">
     <div class="row wrapper-head">
         <div class="col-md-4">
-            <input class="form-control form-control-sm search" placeholder="關鍵字搜尋"/>
-        </div>
-        <div class="col-md-8">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="sort_dropdown_btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    排序
-                </button>
-                <div class="dropdown-menu" aria-labelledby="sort_dropdown_btn">
-                    <a class="dropdown-item sort" href="javascript:;" data-sort="l_fb_name">臉書名稱</a>
-                    <a class="dropdown-item sort" href="javascript:;" data-sort="l_name">角色名稱</a>
-                    <a class="dropdown-item sort" href="javascript:;" data-sort="l_id">代碼</a>
-                    <a class="dropdown-item sort" href="javascript:;" data-sort="l_lv">等級</a>
-                    <a class="dropdown-item sort" href="javascript:;" data-sort="l_team">隊伍</a>
-                </div>
+            <div class="feature-item">
+                <img src="{{asset('img/pokefriend-index-image-01.png')}}" style="max-width:340px;">
+                <h3>有哪些朋友？</h3>
+                <p class="text-muted">不知道還有哪些Facebook上的好友也還有在玩 PokemonGo 呢？好想跟大家加好友啊！</p>
             </div>
         </div>
-    </div>
-    <div class="row wrapper-head list">
-            @foreach($f_chars as $one)
-            <div class="col-md-4">
-                <div class="card border-primary l_item">
-                    <div class="card-header">
-                        <img src="{{asset('img/'.$one->char_team.'-team.svg')}}" style="height:40px;">
-                        <img src="{{asset('avatars/'.$one->avatar.'.jpg')}}" style="width:50px;margin-left:15px;margin-right:15px;">
-                        <span class="l_fb_name">{{$one->name}}</span>
-                    </div>
-                    <span class="l_team" style="display:none;">{{$one->char_team}}</span>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><span class="badge badge-primary">名稱</span> <span class="l_name">{{$one->char_name}}</span></li>
-                        <li class="list-group-item"><span class="badge badge-primary">代碼</span>  <span class="l_id">{{$one->char_id}}</span></li>
-                        <li class="list-group-item"><span class="badge badge-primary">等級</span>  Lv: <span class="l_lv">{{$one->char_lv}}</span></li>
-                        
-                    </ul>
-                </div>
+
+        <div class="col-md-4">
+            <div class="feature-item">
+                <img src="{{asset('img/pokefriend-index-image-02.png')}}" style="max-width:340px;">
+                <h3>資訊分享</h3>
+                <p class="text-muted">將您的 PokemonGo 的訓練家資訊分享給其他人，讓大家來加你好友、互相送禮物！</p>
             </div>
-            @endforeach
+        </div>
+
+        <div class="col-md-4">
+            <div class="feature-item">
+                <img src="{{asset('img/pokefriend-index-image-03.png')}}" style="max-width:340px;">
+                <h3>好友ID查詢</h3>
+                <p class="text-muted">阿明的寶可夢ID取超長超亂的，好友太多都忘記是誰了，到底是哪個ID呢？</p>
+            </div>
+        </div>
+
     </div>
 </div>
-@endsection
-
-@section("js")
-<script src="{{asset('js/list.min.js')}}"></script>
-
-<script>
-var options = {
-  valueNames: [ 'l_fb_name', 'l_team', 'l_name', 'l_id', 'l_lv'],
-  item: 'l_item'
-};
-
-var userList = new List('f_list', options);
-</script>
 @endsection

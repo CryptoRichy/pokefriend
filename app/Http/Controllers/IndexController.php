@@ -12,15 +12,15 @@ use App\Char;
 
 class IndexController extends Controller
 {
-    public function guest()
-    {
-
-    }
-
     public function index()
     {
+        return view('index');
+    }
+
+    public function friend()
+    {
         if(!Auth::check()){
-            return view('guest');
+            return redirect("/");
         }
 
         $user = Auth::user();
@@ -38,7 +38,12 @@ class IndexController extends Controller
                         ->select()
                         ->get();
 
-        return view('index',['f_chars' => $f_chars]);
+        return view('friend',['f_chars' => $f_chars]);
+    }
+
+    public function privacy()
+    {
+        return view('privacy');
     }
 
 }

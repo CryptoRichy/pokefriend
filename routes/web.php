@@ -14,6 +14,8 @@
 Route::get('/', 'IndexController@index');
 
 Route::group(['middleware' => 'usercheck'] , function () {
+    Route::get('friend', 'IndexController@friend');
+
     Route::group(['prefix' => 'char'] , function() {
         Route::get('list' , 'CharController@list');
         Route::post('add', 'CharController@store');
@@ -28,6 +30,8 @@ Route::group(['middleware' => 'usercheck'] , function () {
         return redirect('/');
     });
 });
+
+Route::get('privacy', 'IndexController@privacy');
 
 Route::get('/auth/facebook', 'Auth\FacebookController@redirectToFacebook');
 Route::get('/auth/facebook/callback', 'Auth\FacebookController@handleFacebookCallback');
