@@ -15,14 +15,22 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         // Using class based composers...
+        // View::composer(
+        //     'index', 'App\Http\ViewComposers\TopnavComposer'
+        // );
+
         View::composer(
-            'index', 'App\Http\ViewComposers\TopnavComposer'
+            '*', 'App\Http\ViewComposers\ActiveLinkComposer'
         );
 
         // // Using Closure based composers...
         // View::composer('dashboard', function ($view) {
         //     //
         // });
+
+        View::composer('*', function ($view) {
+            
+        });
     }
 
     /**

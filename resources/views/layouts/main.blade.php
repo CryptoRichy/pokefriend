@@ -33,14 +33,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item <?php if(url()->current() == "/") echo "active";?>">
-                        <a class="nav-link" href="{{url('/')}}">首頁 <?php echo url()->full();?></a>
+                    <li class="nav-item {{$link->checkActive('/')}}">
+                        <a class="nav-link" href="{{url('/')}}">首頁</a>
                     </li>
                     @if($user = Auth::user())
-                    <li class="nav-item <?php if(url()->current() == "/friend") echo "active"?>">
+                    <li class="nav-item {{$link->checkActive('friend')}}">
                         <a class="nav-link" href="{{url('friend')}}">我的好友</a>
                     </li>
-                    <li class="nav-item <?php if(url()->current() == "/char/list") echo "active"?>">
+                    <li class="nav-item {{$link->checkActive(['char/list','char/add','char/edit/*'])}}">
                         <a class="nav-link" href="{{url('char/list')}}">我的角色</a>
                     </li>
                     <li class="nav-item">
