@@ -27,7 +27,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="javascript:;">Poke Friend</a>
+            <a class="navbar-brand" href="{{url('/')}}">Poke Friend</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -55,6 +55,18 @@
     <!-- Page Content -->
     @section('content')
     @show()
+    <footer id="footer" style="margin-top:150px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Made by <a href="mailto:oimintw@gmail.com">Min Hsieh</a>.</p>
+                    <p>Css Template <a href="https://bootswatch.com/flatly/"  target="_blank" rel="nofollow">Bootswatch - Flaty</a>. Icons from <a href="http://fontawesome.io/" target="_blank"  rel="nofollow">Font Awesome</a>. Backend Framework <a href="https://laravel.com/" target="_blank" rel="nofollow">Laravel</a>.</p>
+                    <p>Open Source on <a href="https://github.com/minhsieh/pokefriend">Github</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Bootstrap core JavaScript -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

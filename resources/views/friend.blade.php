@@ -4,10 +4,10 @@
 <div class="container" id="f_list">
     <h2 class="wrapper-head">你的Facebook好友們</h2>
     <div class="row wrapper-head">
-        <div class="col-md-4">
-            <input class="form-control form-control-sm search" placeholder="關鍵字搜尋"/>
+        <div class="col-6 col-sm-6 col-md-4 ">
+            <input class="form-control search" placeholder="關鍵字搜尋"/>
         </div>
-        <div class="col-md-8">
+        <div class="col-6 col-sm-6 col-md-4 ">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="sort_dropdown_btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     排序
