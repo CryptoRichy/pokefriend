@@ -22,26 +22,38 @@
             </div>
         </div>
     </div>
-    <div class="row wrapper-head list">
-            @foreach($f_chars as $one)
-            <div class="col-md-4">
-                <div class="card border-primary l_item">
-                    <div class="card-header">
-                        <img src="{{asset('img/'.$one->char_team.'-team.svg')}}" style="height:40px;">
-                        <img src="{{asset('avatars/'.$one->avatar.'.jpg')}}" style="width:50px;margin-left:15px;margin-right:15px;">
-                        <span class="l_fb_name">{{$one->name}}</span>
-                    </div>
-                    <span class="l_team" style="display:none;">{{$one->char_team}}</span>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><span class="badge badge-primary">名稱</span> <span class="l_name">{{$one->char_name}}</span></li>
-                        <li class="list-group-item"><span class="badge badge-primary">代碼</span>  <span class="l_id">{{$one->char_id}}</span></li>
-                        <li class="list-group-item"><span class="badge badge-primary">等級</span>  Lv: <span class="l_lv">{{$one->char_lv}}</span></li>
-                        
-                    </ul>
-                </div>
-            </div>
-            @endforeach
+    
+    @if(count($f_chars) == 0)
+    <div class="row wrapper-head">
+        <div class="col-md-12" style="text-align:center;">
+            <img src="{{asset('img/pokefriend-index-image-04.png')}}" style="max-width:850px;display:block; margin:auto;">
+            <h2>沒有資料</h2>
+            <p class="lead">你目前似乎沒有其他朋友在使用PokeFriend，快找他們來吧！</p>
+        </div>
     </div>
+    @else
+    <div class="row wrapper-head list">
+        @foreach($f_chars as $one)
+        <div class="col-md-4">
+            <div class="card l_item">
+                <div class="card-header">
+                    <img src="{{asset('img/'.$one->char_team.'-team.svg')}}" style="height:40px;">
+                    <img src="{{asset('avatars/'.$one->avatar.'.jpg')}}" style="width:50px;margin-left:15px;margin-right:15px;">
+                    <span class="l_fb_name">{{$one->name}}</span>
+                </div>
+                <span class="l_team" style="display:none;">{{$one->char_team}}</span>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><span class="badge badge-primary">名稱</span> <span class="l_name">{{$one->char_name}}</span></li>
+                    <li class="list-group-item"><span class="badge badge-primary">代碼</span>  <span class="l_id">{{$one->char_id}}</span></li>
+                    <li class="list-group-item"><span class="badge badge-primary">等級</span>  Lv: <span class="l_lv">{{$one->char_lv}}</span></li>
+                    
+                </ul>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    @endif
+    
 </div>
 @endsection
 
